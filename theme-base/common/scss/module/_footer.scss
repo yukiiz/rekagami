@@ -1,0 +1,78 @@
+.footer {
+	border-top: 1px solid;
+	position: relative;
+	&-logo {
+		width: 40%;
+		@include fs(23);
+		@include maxtb {
+			width: 100%;
+		}
+		a {
+			letter-spacing: 4px;
+		}
+		span {
+			color: $sc;
+		}
+	}
+	&01 {
+		&-inner {
+			max-width: $maxW;
+			margin: 0 auto;
+			padding-top: 40px;
+			padding-bottom: 25px;
+			width: 90%;
+			@include maxtb {
+			}
+		}
+	}
+	&-nav {
+		@include minpc {
+			display: flex;
+			justify-content: space-between;
+		}
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			li {
+				@include fs(14);
+				a {
+					&:hover {
+						color: $sc;
+					}
+				}
+				@include maxtb {
+					@include fs(13);
+					padding: 4px 0;
+				}
+			}
+		}
+		&01,
+		&02 {
+			width: calc((100% - 70%) / 2);
+			@include maxtb {
+				margin: 0 auto;
+				text-align: center;
+				width: 50%;
+			}
+		}
+	}
+	&02 {
+		background: black;
+		&-inner {
+			max-width: $maxW;
+			margin: 0 auto;
+			width: 90%;
+			@include maxtb {
+				width: 80%;
+			}
+		}
+		.copy {
+			@include fs(10);
+			color: white;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			text-align: center;
+		}
+	}
+}

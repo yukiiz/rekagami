@@ -1,0 +1,69 @@
+//-------------------------hoverで拡大------------------------------
+@mixin _box {
+	&-item {
+		border: 1px solid #ddd;
+		margin-bottom: 30px;
+		@include minpc {
+			width: 22.5%;
+			&:not(:nth-child(4n)){
+				margin-right: 2.5%;
+			}
+		}
+		@include maxtb {
+			width: 32%;
+			&:not(:nth-child(3n)){
+				margin-right: 2%;
+			}
+		}
+		@include maxsp {
+			margin-bottom: 25px;
+		}
+		&:hover {
+			border: 1px solid $sc;
+			.box-img {
+				img {
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+	&-img {
+		margin: 0 auto;
+		overflow: hidden;
+		padding-top: 100%;
+		position: relative;
+		width: 100%;
+		@include maxsp {
+		}
+		img {
+			font-family: "object-fit: cover;";
+			height: 100%;
+			left: 0;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			transition: all 0.5s;
+			width: 100%;
+		}
+	}
+	&-dec { //テキストのbox
+		padding: 20px;
+		@include maxsp {
+			padding: 15px 5px;
+		}
+	}
+	&-member {
+		// @include fs(15);
+		margin-bottom: 15px;
+		@include maxsp {
+			@include fs(14);
+			margin-bottom: 5px;
+		}
+	}
+	&-staff {
+		@include fs(14);
+		@include maxsp {
+			@include fs(12);
+		}
+	}
+}

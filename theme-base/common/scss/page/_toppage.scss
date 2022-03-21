@@ -1,0 +1,144 @@
+//top-mv
+.top-mv {
+	background-repeat: no-repeat;
+	background-position: center;
+	position: relative;
+	background-size: cover;
+	margin: 0 auto;
+	img {
+		width: 100%;
+	}
+	@include maxtb {
+		margin-top: 60px;
+	}
+	@include maxsp {
+	}
+	.mv {
+		&-block {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			@include maxsp {
+			}
+		}
+		&-btn {
+			@include _btn;
+		}
+	}
+}
+//sec01member
+.top-sec01 {
+	// padding-top: 120px;
+	padding-bottom: 200px;
+	text-align: center;
+	@include maxtb {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.member-box {
+		display: flex;
+		flex-wrap: wrap;
+		@include maxsp {
+		}
+	}
+	.box {
+		@include _box;
+	}
+
+	.sec {
+		&-inner {
+			max-width: $maxW;
+			margin: 0 auto;
+			width: 90%;
+			@include maxsp {
+				width: 95%;
+			}
+		}
+		&-headline {
+			margin-bottom: 25px;
+			@include minpc {
+				display: flex;
+				justify-content: space-between;
+				.right {
+					align-items: center;
+					display: flex;
+				}
+			}
+			@include maxtb {
+				margin-bottom: 50px;
+			}
+			.sec-tit {
+				@include maxtb {
+					margin-bottom: 30px;
+				}
+			}
+			form {
+				margin: 0 auto !important;
+			}
+			.staff-search {
+				@include fs(15);
+				background: white !important;
+				border: 1px solid #666 !important;
+				height: 35px;
+				margin-left: 10px;
+				width: 290px;
+				@include maxtb {
+					margin-left: 0;
+					margin-top: 15px;
+					width: 100%;
+				}
+			}
+			.member-search {
+				@include fs(15);
+				border-top: 1px solid #666 !important;
+				border-bottom: 1px solid #666 !important;
+				background: white !important;
+				height: 35px;
+				width: 320px;
+				@include maxtb {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+.search-area {
+	align-items: center;
+	display: flex;
+	input[type="text"] {
+		padding: 5px 5px 3px;
+		@include fs(16);
+	}
+	input[type="text"]:focus,
+	input[type="search"]:focus {
+		background: #f9f9f9 !important;
+	}
+	button {
+		@include fs(15);
+		border-radius: 0;
+		border: 1px solid #666;
+		height: 35px;
+	}
+}
+.search-result {
+	margin-top: 20px;
+}
+.hit-num__text span {
+	font-weight: bold;
+}
+#search-result__list {
+	margin-top: 15px;
+}
+#search-result__list span {
+	background: #f2f2f2;
+	display: inline-block;
+	margin-right: 15px;
+	padding: 5px;
+}
+.target-area {
+	margin-top: 50px;
+	.hidden {
+		display: none;
+	}
+}

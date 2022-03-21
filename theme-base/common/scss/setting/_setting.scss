@@ -1,0 +1,37 @@
+@charset "utf-8";
+// ===================================================================
+// 設定用定義
+// ===================================================================
+
+// リセットCSS
+$resetCSS: 0;
+
+// フォント
+.br::before {
+	content: "\A";
+	white-space: pre;
+	font-family: "serif";
+}
+
+$base_font: "Noto Sans JP", メイリオ, Meiryo, "-apple-system", "Helvetica Neue", "游ゴシック", "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif;
+
+//サブカラー
+$sc: #0093c5;
+//テキストベースカラー
+$fc: #091826;
+//リンクベースカラー
+//$lc: #222;
+//backgroundカラー
+//$bc: #f4f4f4;
+
+//PC最大幅
+$maxW: 1200px;
+//PC最大幅 （Padding込）
+$maxWpd: 1920px;
+
+// レスポンシブサイズ
+$maxsp: "screen and (max-width: 767px)"; //～sp
+$maxtb: "screen and (max-width: 959px)"; //～tb
+$mintb: "screen and (min-width: 768px)"; //tb～
+$minpc: "screen and (min-width: 960px)"; //pc～
+$maxpc: "screen and (min-width: 1280px)"; //pc最大幅

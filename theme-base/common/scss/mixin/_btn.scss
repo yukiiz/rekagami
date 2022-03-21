@@ -1,0 +1,63 @@
+//共通ボタン
+$initType: "normal";
+@mixin _btn($type: $initType) {
+	//共通スタイル
+	background-color: $sc !important;
+	border: 2px solid $sc !important;
+	-webkit-box-shadow: 2px 2px 4px #333333 !important;
+	box-shadow: 2px 2px 4px #333333 !important;
+	color: white !important;
+	display: inline-block;
+	height: 60px !important;
+	line-height: 60px !important;
+	padding: 0 10px !important;
+	text-align: center;
+	transition: 0.3s;
+	@include maxsp {
+		height: 40px !important;
+		line-height: 40px !important;
+		max-width: 100% !important;
+		padding: 0 40px !important;
+		width: auto !important;
+	}
+	a {
+		display: block;
+		line-height: 60px;
+		color: white;
+		width: 100%;
+		@include maxsp {
+			line-height: 40px;
+		}
+	}
+	span {
+		padding-left: 10px;
+	}
+	&:hover {
+		background: white !important;
+		color: $sc !important;
+		text-decoration: none;
+		a {
+			color: $sc;
+		}
+	}
+	@if ($type == "normal") {
+		width: 400px !important;
+	} @else if($type == "small") {
+		width: 250px !important;
+		@include maxsp {
+			padding: 0 30px !important;
+		}
+	}
+}
+
+@mixin _link-txt {
+	font-weight: 700;
+	margin: 10px 0;
+	a {
+		border-bottom: 1px solid #1619a4;
+		color: #1619a4;
+		@include maxsp {
+			@include fs(10);
+		}
+	}
+}

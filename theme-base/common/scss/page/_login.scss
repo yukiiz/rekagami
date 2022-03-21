@@ -1,0 +1,14 @@
+// ================
+// ログインページ
+// ================
+
+body.login{
+	.header-inner:before, .header-toggle, .header-nav{
+		display: none;
+	}
+	@include maxtb {
+		.header-logo{
+			left: 0;
+		}
+	}
+}

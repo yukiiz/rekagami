@@ -1,0 +1,30 @@
+//～SP
+@mixin maxsp {
+	@media #{$maxsp} {
+		@content;
+	}
+}
+//～tb
+@mixin maxtb {
+	@media #{$maxtb} {
+		@content;
+	}
+}
+//tb～
+@mixin mintb {
+	@media #{$mintb} {
+		@content;
+	}
+}
+//pc～
+@mixin minpc {
+	@media #{$minpc} {
+		@content;
+	}
+}
+//pc最大幅1280px以上の時
+@mixin maxpc {
+	@media #{$maxpc} {
+		@content;
+	}
+}
