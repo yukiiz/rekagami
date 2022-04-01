@@ -23,7 +23,7 @@
 		letter-spacing: 6px;
 		padding: 20px;
 		position: absolute;
-		width: 20%;
+		//width: 20%;
 		@include fs(32);
 		top: 50%;
 		transform: translatey(-50%);
@@ -130,7 +130,7 @@
 		}
 		&-logo {
 			left: 70px;
-			width: 30%;
+			//width: 30%;
 		}
 		&-nav {
 			display: none;

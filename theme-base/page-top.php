@@ -30,19 +30,24 @@ Template Name: トップページ
 					<div id='search-clear' class='input-group-prepend'>
 						<button class='input-group-text fas fa-trash-alt'></button>
 					</div>
-					<input class="member-search" type="text" id="search-text" placeholder="顧客番号・お客様氏名・担当スタッフを入力">
+					<input class="member-search" type="text" id="search-text" placeholder="顧客番号・お客様氏名・担当美容師を入力">
 					<div id='search-submit' class='search-submit input-group-append'>
 						<button class='input-group-text fas fa-search'></button>
 					</div>
 				</div>
 				<form>
-					<input class="staff-search" type="search" id="search-select" list="keyword-list" name="search" placeholder="美容師名でソート" />
+					<input class="staff-search" type="search" id="search-select" list="keyword-list" name="search" placeholder="担当美容師名でソート" />
 					<datalist id="keyword-list">
-						<?php $users = get_users( array('orderby'=>'ID','order'=>'ASC','role' =>'editor') ); ?>
-						<?php foreach($users as $user) {
-							$uid = $user->ID; ?>
-						<option value="<?php echo $user->display_name ; ?>">
-							<?php } ?>
+						<?php
+						$taxonomy_slug = 'stylist'; // タクソノミーのスラッグを指定
+						$terms = get_terms($taxonomy_slug); // タームの取得
+						if( $terms && !is_wp_error($terms) ){ // タームがあれば表示
+						foreach ( $terms as $value ) { // 配列の繰り返し
+						?>
+						<select name="name">
+							<option value="<?php echo esc_html($value->name) ; ?>">
+								<?php }} ?>
+						</select>
 					</datalist>
 				</form>
 			</div>

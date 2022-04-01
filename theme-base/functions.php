@@ -149,15 +149,15 @@ function my_user_signup() {
     if ($error->get_error_code()) {
 
     get_header(); ?>
-    <section class="sec-register">
-    	<div class="sec-inner">
-            <div class="sec-headline">
-                <h1 class="page-tit text-center">お客様登録</h1>
-            </div>
-    		<!-- Registration -->
-    		<div id="register-form">
-    			<form class="my_form" name="my_signup_form" id="my_signup_form" action="" method="post">
-    				<?php
+<section class="sec-register">
+	<div class="sec-inner">
+		<div class="sec-headline">
+			<h1 class="page-tit text-center">お客様登録</h1>
+		</div>
+		<!-- Registration -->
+		<div id="register-form">
+			<form class="my_form" name="my_signup_form" id="my_signup_form" action="" method="post">
+				<?php
     				if ($error->get_error_codes()) {
     					echo "<div class='error'>";
     					echo "<ul>";
@@ -168,27 +168,27 @@ function my_user_signup() {
     					echo "</div>";
     				}
     				?>
-    				<label for="signup_last_name">姓</label>
-                    <input id="signup_last_name" name="last_name" type="text" class="regular_text" placeholder="例）東京" />
-                    <label for="signup_first_name">名</label>
-                    <input id="signup_first_name" name="first_name" type="text" class="regular_text" placeholder="例）太郎" />
-                    <!-- <label for="signup_user_name">顧客番号</label>
+				<label for="signup_last_name">姓</label>
+				<input id="signup_last_name" name="last_name" type="text" class="regular_text" placeholder="例）東京" />
+				<label for="signup_first_name">名</label>
+				<input id="signup_first_name" name="first_name" type="text" class="regular_text" placeholder="例）太郎" />
+				<!-- <label for="signup_user_name">顧客番号</label>
                     <input id="signup_user_name" name="user_name" type="text" required placeholder="半角英数字で入力"> -->
-                    <label for="signup_email">メールアドレス</label>
-                    <input id="signup_email" name="user_email" type="email" required placeholder="例）tokyo@test.mail">
-                    <label for="signup_user_phone">電話番号</label>
-                    <input id="signup_user_phone" name="user_phone" type="tel" placeholder="例）00000000000" class="input" />
-                    <div class="form-submit">
-                        <button type="submit" name="my_submit" class="my_submit_btn btn-block" value="signup">会員登録</button>
-                    </div>
-    				<?php wp_nonce_field( 'my_nonce_action', 'my_nonce_name' );?>
-    			</form>
-    		</div>
-    	</div><!-- /Registration -->
-    </section>
-    <?php get_sidebar(); ?>
-    <?php get_footer(); ?>
-    <?php }
+				<label for="signup_email">メールアドレス</label>
+				<input id="signup_email" name="user_email" type="email" required placeholder="例）tokyo@test.mail">
+				<label for="signup_user_phone">電話番号</label>
+				<input id="signup_user_phone" name="user_phone" type="tel" placeholder="例）00000000000" class="input" />
+				<div class="form-submit">
+					<button type="submit" name="my_submit" class="my_submit_btn btn-block" value="signup">会員登録</button>
+				</div>
+				<?php wp_nonce_field( 'my_nonce_action', 'my_nonce_name' );?>
+			</form>
+		</div>
+	</div><!-- /Registration -->
+</section>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
+<?php }
 
     $userdata = array(
         'last_name' => $user_last_name,       //  姓
@@ -472,23 +472,32 @@ function show_only_authorpost($query) {
 }
 add_action('pre_get_posts', 'show_only_authorpost');
 
-
 /*-----------------------------------------------------------------------------------*/
-// 投稿者に自分のメディアのみ見えるようにする
+// メディアに自分自身が投稿したファイルしか表示させない処理（投稿者ユーザー向け）
 /*-----------------------------------------------------------------------------------*/
-function show_only_authorimage( $where ){
-    global $current_user;
-    if(is_admin()){
-        if(current_user_can('author') ){
-            if( isset( $_POST['action'] ) && ( $_POST['action'] == 'query-attachments' ) ){
-                $where .= ' AND post_author='.$current_user->data->ID;
-            }
-        }
-    }
-    return $where;
+function show_only_author_mine_image( $where ){
+	global $current_user;
+	if(is_admin()){
+		if(current_user_can('author') ){
+			if( isset( $_POST['action'] ) && ( $_POST['action'] == 'query-attachments' ) ){
+				$where .= ' AND post_author='.$current_user->data->ID;
+			}
+		}
+	}
+	return $where;
 }
-add_filter( 'posts_where', 'show_only_authorimage' );
+add_filter( 'posts_where', 'show_only_author_mine_image' );
 
+/*-----------------------------------------------------------------------------------*/
+// 投稿者に自分の投稿についたコメントのみ見えるようにする
+/*-----------------------------------------------------------------------------------*/
+function exclude_other_comments( $wp_comment_query ) {
+	if ( is_admin() && !current_user_can( 'administrator' ) ) {
+		$user = wp_get_current_user();
+		$wp_comment_query->query_vars[ 'post_author' ] = $user->ID;
+	}
+}
+add_action( 'pre_get_comments', 'exclude_other_comments' );
 
 /*-----------------------------------------------------------------------------------*/
 // 投稿の1枚めをアイキャッチにする
