@@ -515,3 +515,26 @@ function eyecatch_image() {
     }
     return $first_img;
 }
+
+/*-----------------------------------------------------------------------------------*/
+// 自作コメントリスト（画像のACFカスタムフィールドを追加）
+/*-----------------------------------------------------------------------------------*/
+function my_comment_template( $comment, $args, $depth ) {
+	$user = $comment->user_id;
+	$user_meta = get_userdata($user);
+$user_roles = $user_meta -> roles;
+$bypostauthor = '';
+if ( in_array( 'author', $user_roles, true ) ) {$bypostauthor = 'bypostauthor';}
+	?>
+<li <?php comment_class($bypostauthor); ?>>
+	<?php comment_author(); ?>
+	<p class="comment-meta commentmetadata"><?php echo comment_date(); ?><?php comment_time(); ?></p>
+	<?php comment_text(); ?>
+	<?php if (get_field('comment-images',$comment)) : ?>
+	<?php while (the_repeater_field('comment-images',$comment)) : ?>
+	<img src="<?php the_sub_field('comment-img',$comment); ?>">
+	<?php endwhile; ?>
+	<?php endif; ?>
+</li>
+<?php
+}

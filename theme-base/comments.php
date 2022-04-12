@@ -9,11 +9,16 @@
 	<ul class="commets-list">
 		<!-- 【３】コメントリストの表示 -->
 		<?php
-        $args = array(
+        /*
+				$args = array(
             'reverse_top_level' => true,
         );
-        wp_list_comments($args);
-        ?>
+				wp_list_comments($args);
+				*/
+      wp_list_comments(array(
+			'callback' => 'my_comment_template','reverse_top_level' => true
+			));
+		?>
 	</ul>
 
 	<?php endif; ?>
