@@ -527,7 +527,7 @@ $bypostauthor = '';
 if ( in_array( 'author', $user_roles, true ) ) {$bypostauthor = 'bypostauthor';}
 	?>
 <li <?php comment_class($bypostauthor); ?>>
-	<?php comment_author(); ?>
+	<!--<?php comment_author(); ?>-->
 	<p class="comment-meta commentmetadata"><?php echo comment_date(); ?><?php comment_time(); ?></p>
 	<?php comment_text(); ?>
 	<?php if (get_field('comment-images',$comment)) : ?>
