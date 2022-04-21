@@ -208,7 +208,7 @@ input[type="checkbox"] {
 		margin-bottom: 5px;
 	}
 	.btn-block {
-		@include _btn("register");
+		@include _btn;
 		@include fs(20);
 	}
 	.form-submit {
@@ -260,6 +260,24 @@ input[type="checkbox"] {
 	}
 	.select2-selection__rendered {
 		line-height: 50px !important;
+	}
+}
+.acf-field-62539efb35e1e {
+	thead {
+		display: none;
+	}
+	.acf-actions {
+		text-align: center;
+		.button-primary {
+			@include _btn;
+			@include fs(16);
+		}
+	}
+	.hide-if-value {
+		.acf-button {
+			@include _btn("media");
+			@include fs(16);
+		}
 	}
 }
 // ===================================================================

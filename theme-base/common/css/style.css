@@ -782,11 +782,11 @@ button {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 250px !important;
 }
 
@@ -904,11 +904,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 }
 
@@ -1030,11 +1030,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 	margin: 50px auto 0;
 	display: block;
@@ -1138,11 +1138,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 }
 
@@ -1210,11 +1210,12 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
+	width: 400px !important;
 	font-size: 20px;
 	font-size: 1.25rem;
 }
@@ -1305,11 +1306,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 	font-size: 16px;
 	font-size: 1rem;
@@ -1361,6 +1362,130 @@ input[type="checkbox"] {
 
 .record_form .select2-selection__rendered {
 	line-height: 50px !important;
+}
+
+.acf-field-62539efb35e1e thead {
+	display: none;
+}
+
+.acf-field-62539efb35e1e .acf-actions {
+	text-align: center;
+}
+
+.acf-field-62539efb35e1e .acf-actions .button-primary {
+	background-color: #0093c5 !important;
+	border: 2px solid #0093c5 !important;
+	-webkit-box-shadow: 2px 2px 4px #333333 !important;
+	box-shadow: 2px 2px 4px #333333 !important;
+	color: white !important;
+	display: inline-block;
+	padding: 0 10px !important;
+	text-align: center;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
+	width: 400px !important;
+	font-size: 16px;
+	font-size: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+	.acf-field-62539efb35e1e .acf-actions .button-primary {
+		height: 40px !important;
+		line-height: 40px !important;
+		max-width: 100% !important;
+		padding: 0 40px !important;
+		width: auto !important;
+	}
+}
+
+.acf-field-62539efb35e1e .acf-actions .button-primary a {
+	display: block;
+	line-height: 60px;
+	color: white;
+	width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.acf-field-62539efb35e1e .acf-actions .button-primary a {
+		line-height: 40px;
+	}
+}
+
+.acf-field-62539efb35e1e .acf-actions .button-primary span {
+	padding-left: 10px;
+}
+
+.acf-field-62539efb35e1e .acf-actions .button-primary:hover {
+	background: white !important;
+	color: #0093c5 !important;
+	text-decoration: none;
+}
+
+.acf-field-62539efb35e1e .acf-actions .button-primary:hover a {
+	color: #0093c5;
+}
+
+.acf-field-62539efb35e1e .hide-if-value .acf-button {
+	background-color: #0093c5 !important;
+	border: 2px solid #0093c5 !important;
+	-webkit-box-shadow: 2px 2px 4px #333333 !important;
+	box-shadow: 2px 2px 4px #333333 !important;
+	color: white !important;
+	display: inline-block;
+	padding: 0 10px !important;
+	text-align: center;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+	height: 40px !important;
+	line-height: 40px !important;
+	width: 200px !important;
+	font-size: 16px;
+	font-size: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+	.acf-field-62539efb35e1e .hide-if-value .acf-button {
+		height: 40px !important;
+		line-height: 40px !important;
+		max-width: 100% !important;
+		padding: 0 40px !important;
+		width: auto !important;
+	}
+}
+
+.acf-field-62539efb35e1e .hide-if-value .acf-button a {
+	display: block;
+	line-height: 60px;
+	color: white;
+	width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.acf-field-62539efb35e1e .hide-if-value .acf-button a {
+		line-height: 40px;
+	}
+}
+
+.acf-field-62539efb35e1e .hide-if-value .acf-button span {
+	padding-left: 10px;
+}
+
+.acf-field-62539efb35e1e .hide-if-value .acf-button:hover {
+	background: white !important;
+	color: #0093c5 !important;
+	text-decoration: none;
+}
+
+.acf-field-62539efb35e1e .hide-if-value .acf-button:hover a {
+	color: #0093c5;
+}
+
+@media screen and (max-width: 767px) {
+	.acf-field-62539efb35e1e .hide-if-value .acf-button {
+		padding: 0 30px !important;
+	}
 }
 
 .single .sec-single .sec-inner {
@@ -1525,11 +1650,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 	margin: 30px auto !important;
 	font-size: 16px;
@@ -1814,11 +1939,11 @@ input[type="checkbox"] {
 	box-shadow: 2px 2px 4px #333333 !important;
 	color: white !important;
 	display: inline-block;
-	height: 60px !important;
-	line-height: 60px !important;
 	padding: 0 10px !important;
 	text-align: center;
 	transition: 0.3s;
+	height: 60px !important;
+	line-height: 60px !important;
 	width: 400px !important;
 }
 

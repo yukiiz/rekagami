@@ -125,6 +125,7 @@ select {
 }
 img {
 	vertical-align: bottom;
+	max-width: 100%;
 }
 sup {
 	position: relative;
@@ -149,8 +150,18 @@ button {
 		margin: 50px auto;
 	}
 }
-.mb30 {margin: 30px auto; @include maxsp {margin: 15px auto; } }
-.mb60 {margin: 60px auto; @include maxsp {margin: 30px auto; } }
+.mb30 {
+	margin: 30px auto;
+	@include maxsp {
+		margin: 15px auto;
+	}
+}
+.mb60 {
+	margin: 60px auto;
+	@include maxsp {
+		margin: 30px auto;
+	}
+}
 .sp-none {
 	@include maxsp {
 		display: none !important;
