@@ -70,7 +70,11 @@ if (!is_user_logged_in()) {
 </article>
 <section class="user-area">
 	<div class="sec-inner">
-		<a href="<?php echo home_url('/change_password/');?>" class="btn-block">パスワード変更</a>
+		<?php if(current_user_can('author')){ ?>
+			<a href="<?php echo home_url('/change_password/');?>" class="btn-block">パスワード変更</a>
+		<?php } else { //管理者、編集者の場合カルテ新規作成ボタンを表示 ?>
+			<a href="<?php echo esc_url(home_url('/record_form/?author_id='.$userId));?>" class="btn-block">カルテを作成する</a>
+		<?php } ?>
 	</div>
 </section>
 

@@ -289,7 +289,7 @@ function generate_username( $prefix = 'user_' ){
 add_action('acf/save_post', 'custom_acf_save_post', 20);
 function custom_acf_save_post( $post_id ) {
     if ( ! is_admin() ) {
-        if( empty($_POST['acf']) ) {
+        if(empty($_POST['acf']) || strpos($post_id, 'comment') !== false) {
             return;
         }
 
