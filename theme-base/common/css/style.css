@@ -1705,6 +1705,19 @@ input[type="checkbox"] {
 	}
 }
 
+.single .media-modal-content .wpmf-sorts-dropdown {
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 959px) {
+	.single .media-modal-content .attachments-wrapper {
+		top: 100px !important;
+	}
+	.single .media-modal-content #wpmf-breadcrumb {
+		width: 100% !important;
+	}
+}
+
 .archive-inner {
 	margin: 0 auto;
 	text-align: center;

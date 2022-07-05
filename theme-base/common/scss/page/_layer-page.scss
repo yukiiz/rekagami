@@ -449,6 +449,19 @@ input[type="checkbox"] {
 			@include fs(14);
 		}
 	}
+	.media-modal-content {
+		.wpmf-sorts-dropdown {
+			margin-bottom: 10px;
+		}
+		@include maxtb {
+			.attachments-wrapper {
+				top: 100px !important;
+			}
+			#wpmf-breadcrumb {
+				width: 100% !important;
+			}
+		}
+	}
 }
 
 // ===================================================================
