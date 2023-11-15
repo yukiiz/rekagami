@@ -42,7 +42,7 @@ function change_login_redirect($redirect_to, $request_redirect_to, $current_user
     if ( $roles === 'editor' ) {
         return home_url();
     } elseif ( $roles === 'author' ){
-        return '/?author='.$user_id;
+        return '/enter/?author='.$user_id;
     } else{
         return admin_url();
     }
@@ -538,3 +538,17 @@ if ( in_array( 'author', $user_roles, true ) ) {$bypostauthor = 'bypostauthor';}
 </li>
 <?php
 }
+
+/*-----------------------------------------------------------------------------------*/
+// 各投稿ごとのメディア表示(test)
+/*-----------------------------------------------------------------------------------*/
+function get_only_self_media( $query ) {
+	$user_id = get_current_user_id();
+    $post_id = $_POST['post_id'];
+    if ( $user_id && !current_user_can('activate_plugins') && !current_user_can('edit_others_posts
+') ) {
+        $query['post_parent'] = $post_id ;
+    }
+    return $query;
+}
+add_filter( 'ajax_query_attachments_args', 'get_only_self_media' );
