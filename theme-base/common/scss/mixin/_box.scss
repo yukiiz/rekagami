@@ -4,16 +4,16 @@
 		border: 1px solid #ddd;
 		margin-bottom: 30px;
 		@include minpc {
-			width: 22.5%;
-			&:not(:nth-child(4n)){
-				margin-right: 2.5%;
-			}
+			width: 23.5%;
+			// &:not(:nth-child(4n)){
+			// 	margin-right: 2.5%;
+			// }
 		}
 		@include maxtb {
 			width: 32%;
-			&:not(:nth-child(3n)){
-				margin-right: 2%;
-			}
+			// &:not(:nth-child(3n)){
+			// 	margin-right: 2%;
+			// }
 		}
 		@include maxsp {
 			margin-bottom: 25px;

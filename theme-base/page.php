@@ -1,10 +1,7 @@
 <?php get_header(); ?>
 
 
-<?php if(have_posts()): while(have_posts()):the_post();
-$page = get_post( get_the_ID() );
-$slug = $page->post_name;
-?>
+<?php if(have_posts()): while(have_posts()):the_post(); ?>
 
 <section class="sec-<?php echo $slug; ?>">
 
@@ -15,7 +12,7 @@ $slug = $page->post_name;
 		</div>
 
 		<!--<time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time('Y.m.d'); ?></time>-->
-		<p><?php the_content(); ?></p>
+		<?php get_the_content(); ?>
 
 	</div>
 
@@ -26,4 +23,4 @@ $slug = $page->post_name;
 
 <?php get_sidebar(); ?>
 
-<?php get_footer(); ?>​
+<?php get_footer(); ?>

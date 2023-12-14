@@ -75,7 +75,7 @@ input,
 select {
 	box-sizing: border-box;
 	font-family: $base_font;
-	-webkit-appearance: none;
+	// -webkit-appearance: none;
 }
 input[type="submit"],
 input[type="button"] {

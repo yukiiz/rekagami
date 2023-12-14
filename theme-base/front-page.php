@@ -1,8 +1,3 @@
-<?php
-/*
-Template Name: トップページ
-*/
-?>
 <?php get_header(); ?>
 <div id="overlay">
 	<div class="cv-spinner">
@@ -30,12 +25,12 @@ Template Name: トップページ
 					<div id='search-clear' class='input-group-prepend'>
 						<button class='input-group-text fas fa-trash-alt'></button>
 					</div>
-					<input class="member-search" type="text" id="search-text" placeholder="顧客番号・お客様氏名・担当美容師を入力">
+					<input class="member-search" type="text" id="search-text" placeholder="お客様氏名を入力">
 					<div id='search-submit' class='search-submit input-group-append'>
 						<button class='input-group-text fas fa-search'></button>
 					</div>
 				</div>
-				<form>
+				<!-- <form>
 					<input class="staff-search" type="search" id="search-select" list="keyword-list" name="search" placeholder="担当美容師名でソート" />
 					<datalist id="keyword-list">
 						<?php
@@ -49,57 +44,51 @@ Template Name: トップページ
 								<?php }} ?>
 						</select>
 					</datalist>
-				</form>
+				</form> -->
 			</div>
 		</div>
 		<!--投稿者一覧を表示-->
 		<?php $users = get_users( array('orderby'=>'ID','order'=>'DESC','role' =>'author' ) ); ?>
 		<div class="authors">
 			<ul class="member-box box target-area">
-				<?php foreach($users as $user) {
-				$uid = $user->ID;
-				$uid_author = get_field('user', 'user_' . $uid);
-				// $image = get_the_author_meta( 'user_img', $uid );
-				// $image_url = wp_get_attachment_url(get_the_author_meta( 'user_img', $uid ));
-				$image_url = '';
+				<?php
+				//Coming Soonの記事を取得
 				$args = array(
-					'post_type'       => 'record',
-					'author'	    => $uid,
-					'posts_per_page'     => 1,
+					'post_type' => 'record',
+					'post_status' => 'publish',
+					'posts_per_page' => -1,
 				);
-				// echo '<pre>';
-				// var_dump(get_posts( $args ));
-				// echo '</pre>';
-				// echo eyecatch_image();
-				$myposts = get_posts( $args );
-				if(!empty($myposts)){
-					foreach( $myposts as $post ) {
-						setup_postdata($post);
-						$image_url = eyecatch_image();
-						$terms = get_the_terms($post->ID, 'stylist');
-						$staff = $terms[0]->name;
-						$staff_id = $terms[0]->term_id;
+				$wp_query = new WP_Query($args);
+				if ($wp_query->have_posts()) {
+					while ($wp_query->have_posts()) {
+						$wp_query->the_post();
+						$image_url = get_template_directory_uri() . '/common/img/no-img.png';
+						//サムネ用画像取得
+						$comment = get_comments(array(
+							'post_id' => $post->ID,
+							'number' => 1
+						));
+						if(isset($comment[0])){
+							$latest_comment_id = $comment[0]->comment_ID;
+							$img_data = get_comment_meta($latest_comment_id, 'comment-gallery', false);
+							if ($img_data[0]) {
+								$img_id = $img_data[0][0];
+								$image_url = wp_get_attachment_image_url($img_id, 'medium_large');
+							}
+						}
+						echo '<li class="box-item">
+							<a href="'.get_permalink().'">
+								<p class="box-img">
+									<img src="'.$image_url.'" alt="">
+								</p>
+								<div class="box-dec">
+									<p class="box-member">'.get_the_title().'</p>
+								</div>
+							</a>
+						</li>';
 					}
-				} else{
-					$staff = '';
-					$staff_id = '';
+					wp_reset_query();
 				} ?>
-				<li class="box-item">
-					<a href="<?php echo get_bloginfo("url") . '/?author=' . $uid ?>">
-						<p class="box-img">
-							<?php if($image_url == "" ) { ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/common/img/no-img.png">
-							<?php } else { ?>
-							<img src="<?php echo $image_url; ?>" alt="">
-							<?php } ?>
-						</p>
-						<div class="box-dec">
-							<p class="box-member"><span style="display:none;"><?php echo $user->user_login;?></span><?php echo $user->last_name ; ?>　<?php echo $user->first_name ; ?></p>
-							<p class="box-staff"><span style="display:none;"><?php echo $staff_id;?></span><?php echo $staff ; ?></p>
-						</div>
-					</a>
-				</li>
-				<?php } ?>
 			</ul>
 		</div>
 	</div>

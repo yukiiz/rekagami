@@ -5,6 +5,40 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	form {
+		margin: 30px auto 100px;
+		max-width: 700px;
+		@include maxtb {
+			margin-bottom: 50px;
+		}
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="tel"],
+	input[type="checkbox"],
+	input[type="radio"] {
+		background: #eee !important;
+		border: 1px solid #ddd !important;
+		color: #767676;
+		display: block;
+		height: 50px;
+		margin: 0 auto;
+		width: 100%;
+	}
+	select {
+		border: 1px solid #ddd !important;
+	}
+	input[type="checkbox"],
+	input[type="radio"] {
+		-webkit-appearance: auto;
+		appearance: auto;
+		display: inline-block;
+		margin-right: 2px;
+		width: auto;
+		height: auto;
+	}
 }
 #main {
 	flex: 1;
@@ -69,36 +103,6 @@
 	max-width: 1200px;
 	padding-right: 25px;
 	text-align: right;
-}
-form {
-	margin: 30px auto 100px;
-	max-width: 700px;
-	@include maxtb {
-		margin-bottom: 50px;
-	}
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="checkbox"],
-select {
-	background: #eee !important;
-	border: 1px solid #ddd !important;
-	color: #767676;
-	display: block;
-	height: 50px;
-	margin: 0 auto;
-	width: 100%;
-}
-input[type="checkbox"] {
-	-webkit-appearance: auto;
-	appearance: auto;
-	display: inline-block;
-	margin-right: 2px;
-	width: auto;
-	height: auto;
 }
 .featured_image {
 	.file-selector {
@@ -196,9 +200,8 @@ input[type="checkbox"] {
 	// 	width: 90%;
 	// }
 }
-#register-form {
+.form-box {
 	input {
-		margin-bottom: 30px;
 	}
 	select {
 		margin-bottom: 50px;
@@ -220,6 +223,13 @@ input[type="checkbox"] {
 			@include fs(12);
 			color: red;
 		}
+	}
+	.signup_item {
+		margin-bottom: 30px;
+	}
+	.signup_choice_box {
+		display: flex;
+		gap: 20px;
 	}
 }
 // ===================================================================
@@ -262,24 +272,24 @@ input[type="checkbox"] {
 		line-height: 50px !important;
 	}
 }
-.acf-field-62539efb35e1e {
-	thead {
-		display: none;
-	}
-	.acf-actions {
-		text-align: center;
-		.button-primary {
-			@include _btn;
-			@include fs(16);
-		}
-	}
-	.hide-if-value {
-		.acf-button {
-			@include _btn("media");
-			@include fs(16);
-		}
-	}
-}
+// .acf-field-62539efb35e1e {
+// 	thead {
+// 		display: none;
+// 	}
+// 	.acf-actions {
+// 		text-align: center;
+// 		.button-primary {
+// 			@include _btn;
+// 			@include fs(16);
+// 		}
+// 	}
+// 	.hide-if-value {
+// 		.acf-button {
+// 			@include _btn("media");
+// 			@include fs(16);
+// 		}
+// 	}
+// }
 // ===================================================================
 // layer-page single-page カルテ詳細
 // ===================================================================
@@ -322,33 +332,13 @@ input[type="checkbox"] {
 	#comments {
 		max-width: 700px;
 		margin: 0 auto;
-		width: 95%;
 	}
-	.commets-list {
+	.comments-list {
 		margin-top: 40px;
 		li {
-			background-color: #dbeef7;
-			border-radius: 10px;
-			margin-bottom: 40px;
-			padding: 15px 25px;
+			padding: 30px 0;
 			position: relative;
-			&:before {
-				content: "";
-				border-top: 18px solid #dbeef7;
-				border-right: 10px solid transparent;
-				border-left: 10px solid transparent;
-				left: 5%;
-				position: absolute;
-				top: 100%;
-			}
-			&.bypostauthor {
-				background-color: #fff8d6;
-				&:before {
-					border-top: 18px solid #fff8d6;
-					border-right: 10px solid transparent;
-					border-left: 10px solid transparent;
-				}
-			}
+			border-bottom: 1px solid #ddd;
 			.comment-body {
 				display: flex;
 				justify-content: space-between;
@@ -361,6 +351,14 @@ input[type="checkbox"] {
 			.comment-meta {
 				margin-bottom: 20px;
 				width: 100%;
+			}
+			.comment-images {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				.image {
+					width: calc(50% - 10px);
+				}
 			}
 			p:not(.dco-attachment) {
 				width: 100%;
@@ -422,9 +420,13 @@ input[type="checkbox"] {
 		// }
 		textarea {
 			border: 1px solid #ddd;
-			background: #eee;
 			width: 100%;
 			vertical-align: bottom;
+			@include fs(16);
+			padding: 5px;
+			@include maxsp {
+				@include fs(14);
+			}
 		}
 	}
 	.logged-in-as {
@@ -436,6 +438,11 @@ input[type="checkbox"] {
 		}
 		label {
 			display: none;
+		}
+	}
+	.acf-comment-fields {
+		.acf-button {
+			@include _btn02;
 		}
 	}
 	.form-submit {

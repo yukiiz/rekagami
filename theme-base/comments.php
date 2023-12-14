@@ -6,7 +6,7 @@
 	<!-- 【２】投稿されたコメントの有無確認 -->
 	<?php if( have_comments() ): ?>
 
-	<ul class="commets-list">
+	<ul class="comments-list">
 		<!-- 【３】コメントリストの表示 -->
 		<?php
         /*
@@ -28,9 +28,9 @@
 
     // コメントフォームの設定
     $args = array(
-    'title_reply' => 'コメントの登録',
-    'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" placeholder="コメント" cols="45" rows="8" aria-required="true">' . '</textarea></p>',
-    'label_submit' => 'コメントを送信する'
+    'title_reply' => '来店記録の登録',
+    'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" placeholder="コメント" cols="45" rows="4">担当美容師：</textarea></p>',
+    'label_submit' => '来店記録を追加する'
     );
 
     // コメントフォームの呼び出し

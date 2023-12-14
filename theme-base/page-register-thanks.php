@@ -16,11 +16,11 @@ $slug = $page->post_name;
 		</div>
 		<!-- contents -->
 		<?php
-		$author_id = $_GET['author_id'];
+		$post_slug = $_GET['post_slug'];
 		?>
 		<div class="text-center">
 			<div class="btn-block">
-				<a href="<?php echo esc_url(home_url('/record_form/?author_id='.$author_id));?>">カルテを作成する</a>
+				<a href="<?php echo esc_url(home_url('/record/'.$post_slug));?>">カルテを作成する</a>
 			</div>
 		</div>
 	</div><!-- /contents -->
