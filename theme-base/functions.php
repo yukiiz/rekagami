@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts', 'delete_local_jquery');
 //ログイン後の遷移先
 /*-----------------------------------------------------------------------------------*/
 function change_login_redirect($redirect_to, $request_redirect_to, $current_user) {
-    if(!is_wp_error($current_user)) {
+    if (!is_wp_error($current_user)) {
         $roles = $current_user->roles[0];
         $user_id = $current_user->ID;
         if ($roles === 'editor') {
@@ -320,14 +320,47 @@ function my_comment_template($comment, $args, $depth) {
 
             $img_source .= '</div>';
             $date = date("Y/m/d",  strtotime(min($img_date)));
-            echo '<p class="comment-meta commentmetadata">'. $date.'</p>';
+            echo '<p class="comment-meta commentmetadata">' . $date . '</p>';
         }
+        // echo 'コメント日時:';
+        // comment_date();
         comment_text();
         echo $img_source;
         ?>
     </li>
 <?php
 }
+
+/*-----------------------------------------------------------------------------------*/
+// コメント日時変更
+/*-----------------------------------------------------------------------------------*/
+function save_custom_comment_field($comment_id) {
+    if (!$comment = get_comment($comment_id)) return false;
+    //comment-nicknameの値の保存
+    $custom_key_nickname = 'comment_date';
+    $nickname = esc_attr($_POST[$custom_key_nickname]);
+    if ('' == get_comment_meta($comment_id, $custom_key_nickname)) {
+        add_comment_meta($comment_id, $custom_key_nickname, $nickname, true);
+    } else if ($nickname != get_comment_meta($comment_id, $custom_key_nickname)) {
+        update_comment_meta($comment_id, $custom_key_nickname, $nickname);
+    } else if ('' == $nickname) {
+        delete_comment_meta($comment_id, $custom_key_nickname);
+    }
+    //comment-roleの値の保存
+    $custom_key_role = 'comment-role';
+    $role = esc_attr($_POST[$custom_key_role]);
+    if ('' == get_comment_meta($comment_id, $custom_key_role)) {
+        add_comment_meta($comment_id, $custom_key_role, $role, true);
+    } else if ($role != get_comment_meta($comment_id, $custom_key_role)) {
+        update_comment_meta($comment_id, $custom_key_role, $role);
+    } else if ('' == $role) {
+        delete_comment_meta($comment_id, $custom_key_role);
+    }
+
+    return false;
+}
+add_action('comment_post', 'save_custom_comment_field');
+add_action('edit_comment', 'save_custom_comment_field');
 
 /*-----------------------------------------------------------------------------------*/
 // 各投稿ごとのメディア表示(test)
@@ -362,3 +395,18 @@ function customize_duplicate_comment_id($dupe_id, $comment_data) {
     }
     return $dupe_id;
 }
+
+/*-----------------------------------------------------------------------------------*/
+// コメント削除時に更新
+/*-----------------------------------------------------------------------------------*/
+// function comment_status_change($comment) {
+//             $file_path = __DIR__ . '/test.log';
+//             $data = $comment;
+//             file_put_contents($file_path, print_r($data, true));
+// }
+// add_action('sce_save_after', 'comment_status_change', 10, 3);
+
+// add_filter('sce_allow_delete_confirmation', '__return_false');
+
+
+

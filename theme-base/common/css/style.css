@@ -1310,6 +1310,30 @@ button {
 .single .comments-list li .reply {
   display: none;
 }
+.single .comments-list .sce-edit-comment {
+  margin: 0;
+}
+.single .comments-list .sce-edit-button {
+  text-align: right;
+}
+.single .comments-list .sce-edit-button-main {
+  padding: 1px 6px;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  display: table;
+  margin-left: auto;
+}
+.single .comments-list .sce-edit-button .sce-seperator {
+  display: none;
+}
+.single .comments-list .sce-edit-button .sce-timer {
+  font-size: 10px;
+}
+.single .comments-list .sce-edit-button .sce-timer::before {
+  content: "残り ";
+}
 .single .comment-respond {
   margin-top: 100px;
 }
@@ -1862,4 +1886,60 @@ body.login .header-inner:before, body.login .header-toggle, body.login .header-n
   body.login .header-logo {
     left: 0;
   }
+}
+/*-----test20240322-----*/
+.single .record{
+	padding: 30px 0;
+}
+.single .record p{
+	margin-bottom: 15px;
+}
+.single .gallery-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+	gap: 20px;
+}
+.single .gallery-list .item {
+    width: calc(50% - 10px);
+}
+.single .link-btn {
+	cursor: pointer;
+}
+.single .update {
+	display: none;
+}
+.single a.acf-button.button.button-primary {
+    background-color: #0093c5 !important;
+    border: 2px solid #0093c5 !important;
+    box-shadow: 2px 2px 4px #333333 !important;
+    color: white !important;
+    display: inline-block;
+    height: 40px !important;
+    line-height: 40px !important;
+    padding: 0 10px !important;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    margin: 0px auto !important;
+    font-size: 1rem;
+}
+.single .acf-form-submit {
+    text-align: center;
+}
+.single input[type=submit], input[type=button] {
+	background-color: #0093c5 !important;
+    border: 2px solid #0093c5 !important;
+    box-shadow: 2px 2px 4px #333333 !important;
+    color: white !important;
+    display: inline-block;
+    height: 40px !important;
+    line-height: 40px !important;
+    padding: 0 10px !important;
+    text-align: center;
+    transition: 0.3s;
+    cursor: pointer;
+    margin: 0px auto !important;
+    font-size: 1rem;
+	width: 300px;
 }

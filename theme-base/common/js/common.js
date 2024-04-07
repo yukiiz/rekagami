@@ -202,3 +202,10 @@ jQuery("[name=search]").change(function () {
 		}
 	});
 });
+
+$(function() {
+	$('.link-btn').on('click',function(){
+			//$('.link-btn').toggleClass('close');
+			$(this).next('.update').fadeToggle(500);
+		});
+	});
