@@ -133,64 +133,6 @@ add_action('after_setup_theme', function () {
     }
 });
 
-
-/*-----------------------------------------------------------------------------------*/
-// カルテ保存時に投稿者を変更&画像をアップしたらメディア欄に登録する
-/*-----------------------------------------------------------------------------------*/
-add_action('acf/save_post', 'custom_acf_save_post', 20);
-function custom_acf_save_post($post_id) {
-    if (!is_admin()) {
-        if (empty($_POST['acf']) || strpos($post_id, 'comment') !== false) {
-            return;
-        }
-
-        $data['ID'] = $post_id;
-        $data['post_author'] = trim($_POST['acf']['field_6200d21f83cb3']);
-
-        //画像処理
-        if (!empty($_FILES['attachment'])) {
-            require_once(ABSPATH . 'wp-admin/includes/image.php');
-            require_once(ABSPATH . 'wp-admin/includes/file.php');
-            require_once(ABSPATH . 'wp-admin/includes/media.php');
-            $attachment_id = media_handle_upload('attachment', $post_id);
-            if (is_wp_error($attachment_id)) {
-                // 画像のアップロード中にエラーが起きた。
-            } else {
-                // 画像のアップロードに成功 !
-                $data['post_content'] = wp_get_attachment_image($attachment_id, 'medium');
-            }
-        }
-
-        wp_update_post($data);
-        wp_redirect(get_permalink($post_id));
-        exit;
-    }
-}
-
-/*-----------------------------------------------------------------------------------*/
-//ACF文言変更
-/*-----------------------------------------------------------------------------------*/
-function wd_post_title_acf_name($field) {
-    if (is_page('record_form')) {
-        $field['label'] = 'タイトル';
-        return $field;
-    } else {
-        return true;
-    }
-}
-add_filter('acf/load_field/name=_post_title', 'wd_post_title_acf_name');
-
-// Modify ACF Form Label for Post Content Field
-function wd_post_content_acf_name($field) {
-    if (is_page('record_form')) {
-        $field['label'] = 'カルテ内容';
-        return $field;
-    } else {
-        return true;
-    }
-}
-add_filter('acf/load_field/name=_post_content', 'wd_post_content_acf_name');
-
 /*-----------------------------------------------------------------------------------*/
 //投稿者のドロップダウンリストの表示名を変更
 /*-----------------------------------------------------------------------------------*/
@@ -409,4 +351,30 @@ function customize_duplicate_comment_id($dupe_id, $comment_data) {
 // add_filter('sce_allow_delete_confirmation', '__return_false');
 
 
+/*-----------------------------------------------------------------------------------*/
+// 来店記録保存時にタイトルを変更&カルテIDを自動入力する
+/*-----------------------------------------------------------------------------------*/
+add_action('acf/save_post', 'visit_acf_save_post', 20);
+function visit_acf_save_post($post_id) {
+    global $post;
+    if (!is_admin()) {
+        if (empty($_POST['acf'])) {
+            return;
+        }
 
+        $data['ID'] = $post_id;
+        $data['post_title'] = $post->post_title . '様 ' . $_POST['acf']['field_6600796a64dee'];
+
+        wp_update_post($data);
+        wp_redirect(get_permalink($post->ID));
+        exit;
+    }
+}
+
+function visit_acf_default_value($field) {
+    wp_reset_postdata();
+    global $post;
+    $field['default_value'] = $post->ID;
+    return $field;
+}
+add_filter('acf/load_field/key=field_6600791364ded', 'visit_acf_default_value');
