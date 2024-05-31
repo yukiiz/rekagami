@@ -63,26 +63,48 @@
 					while ($wp_query->have_posts()) {
 						$wp_query->the_post();
 						$image_url = get_template_directory_uri() . '/common/img/no-img.png';
+						$permalink = get_permalink();
+						$title = get_the_title();
+
+						//現在のクエリを一旦保存&リセット
+						$temp = $wp_query;
+						$wp_query = null;
+
 						//サムネ用画像取得
-						$comment = get_comments(array(
-							'post_id' => $post->ID,
-							'number' => 1
-						));
-						if(isset($comment[0])){
-							$latest_comment_id = $comment[0]->comment_ID;
-							$img_data = get_comment_meta($latest_comment_id, 'comment-gallery', false);
-							if ($img_data[0]) {
-								$img_id = $img_data[0][0];
-								$image_url = wp_get_attachment_image_url($img_id, 'medium_large');
+						$args = array(
+							'post_type' => 'visit',
+							'post_status' => 'publish',
+							'orderby' => 'meta_value',
+							'meta_key'      => 'visit_date',
+							'posts_per_page' => 1,
+							'meta_query' => array(
+								array(
+									'key' => 'visit_karte',
+									'value' => $post->ID,
+									'compare' => 'LIKE',
+								),
+							)
+						);
+						$wp_query = new WP_Query($args);
+						if ($wp_query->have_posts()) {
+							while ($wp_query->have_posts()) {
+								$wp_query->the_post();
+								$image = get_field('visit_image');
+								if (isset($image)) {
+									$image_url = $image[0]['sizes']['medium_large'];
+								}
 							}
 						}
+						$wp_query = null;
+						$wp_query = $temp;
+
 						echo '<li class="box-item">
-							<a href="'.get_permalink().'">
+							<a href="'.$permalink.'">
 								<p class="box-img">
 									<img src="'.$image_url.'" alt="">
 								</p>
 								<div class="box-dec">
-									<p class="box-member">'.get_the_title().'</p>
+									<p class="box-member">'.$title.'</p>
 								</div>
 							</a>
 						</li>';

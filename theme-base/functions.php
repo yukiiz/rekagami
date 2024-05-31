@@ -363,7 +363,7 @@ function visit_acf_save_post($post_id) {
         }
 
         $data['ID'] = $post_id;
-        $data['post_title'] = $post->post_title . '様 ' . $_POST['acf']['field_6600796a64dee'];
+        $data['post_title'] = $post->post_title;
 
         wp_update_post($data);
         wp_redirect(get_permalink($post->ID));
